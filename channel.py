@@ -156,6 +156,19 @@ class channel:
                     intermission= x['intermission']
                 )
                 self.schedule.append(scheduleToLoad)
+    
+    def currentVideo(self):
+        currentTime = datetime.now()
+        for scheduledVid in self.schedule:
+            if scheduledVid.startTime < currentTime and scheduledVid.endTime > currentTime:
+                timeIn = currentTime - scheduledVid.startTime
+                return {'startTime' : int(timeIn.total_seconds()), 'video' : scheduledVid.video.__dict__}
+            
+    def scheduleMaker(self):
+        self.schedule =[]
+        seriesBlocks = self.createScheduleBySeries()
+        completedList = self.scheduleForPeriod(seriesBlocks)
+        self.addToSchedule(completedList)
 
                 
                     

@@ -25,11 +25,11 @@ print(channel1.seriesList)
 # again = channel1.scheduleForPeriod(test,selectionBuffer=1)
 
 # channel1.addToSchedule(again)
-
+channel1.currentVideo()
 
 # channel1.loadSchedule()
-for x in channel1.schedule:
-    print(x)
+# for x in channel1.schedule:
+#     print(x)
 
 
 

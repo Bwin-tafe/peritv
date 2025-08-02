@@ -31,7 +31,7 @@
             
 <div style="display: grid; grid-template-columns: 75% 25%; gap: 10px">
     <div style="overflow-y: scroll; height: 93.5dvh;">
-        <div style="background-color:white; vertical-align: top; pointer-events:none">
+        <div style="background-color:white; vertical-align: top;">
             <div id='videoContainer'></div>
             <!-- <iframe id="videoContainer" width="100%" height="900" src="https://www.youtube.com/embed/tgbNymZ7vqY?enablejsapi=1" allow="autoplay" enablejsapi="true"> </iframe> -->
         </div>
@@ -99,50 +99,50 @@
         element.height = '900';
     }
     }, false);
-    document.addEventListener("DOMContentLoaded", function(event) {
-        fetch(`${window.origin}/currentVideo`, {method: "POST"})
-            .then(response => response.json())
-            .then(data => {changeSource(data)
-        })
-        fetchSchedule();
-    })
-    function changeToCurrent(){
-        fetch(`${window.origin}/currentVideo`, {method: "POST"})
-            .then(response => response.json())
-            .then(data => {changeSource(data)
-        })
-    }
-    function fetchSchedule(){
-            fetch(`${window.origin}/schedule`, {method: "POST"})
-            .then(response => response.json())
-            .then(data => {updateSchedule(data)
-        })
-    }
+    // document.addEventListener("DOMContentLoaded", function(event) {
+    //     fetch(`${window.origin}/currentVideo`, {method: "POST"})
+    //         .then(response => response.json())
+    //         .then(data => {changeSource(data)
+    //     })
+    //     fetchSchedule();
+    // })
+    // function changeToCurrent(){
+    //     fetch(`${window.origin}/currentVideo`, {method: "POST"})
+    //         .then(response => response.json())
+    //         .then(data => {changeSource(data)
+    //     })
+    // }
+    // function fetchSchedule(){
+    //         fetch(`${window.origin}/schedule`, {method: "POST"})
+    //         .then(response => response.json())
+    //         .then(data => {updateSchedule(data)
+    //     })
+    // }
     
-    function updateSchedule(src){
-        var scheduleList = document.getElementById('schedule')
-        scheduleList.textContent = ""
-        var toInsert = ""
-        var createdList = document.createElement("li")
-        src.forEach(element => { 
-            var createdList = document.createElement("li")
-            if (element["active"]){
-                createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start active")
-                createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} <br> ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
-                scheduleList.appendChild(createdList)
-                createdList.scrollIntoView()
-            } else {
-                createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start")
-                createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} <br> ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
-                scheduleList.appendChild(createdList)
-            }
+    // function updateSchedule(src){
+    //     var scheduleList = document.getElementById('schedule')
+    //     scheduleList.textContent = ""
+    //     var toInsert = ""
+    //     var createdList = document.createElement("li")
+    //     src.forEach(element => { 
+    //         var createdList = document.createElement("li")
+    //         if (element["active"]){
+    //             createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start active")
+    //             createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} <br> ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
+    //             scheduleList.appendChild(createdList)
+    //             createdList.scrollIntoView()
+    //         } else {
+    //             createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start")
+    //             createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} <br> ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
+    //             scheduleList.appendChild(createdList)
+    //         }
 
             
             
-            // toInsert.concat(`<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} - ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
-        })
+    //         // toInsert.concat(`<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} - ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
+    //     })
 
-    }
+    // }
     
     
     </script>
@@ -158,18 +158,36 @@
       //    after the API code downloads.
       var player;
       function onYouTubeIframeAPIReady() {
-            player = new YT.Player('videoContainer', {
-                height: '390',
-                width: '640',
-                videoId: 'ekxn5KLv9XQ',
-                playerVars: {
-                    'playsinline': 1
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
+            fetch(`${window.origin}/currentVid`, {method: "POST"})
+            .then(response => response.json())
+            .then(data => { console.log(data)
+                player = new YT.Player('videoContainer', {
+                    height: '390',
+                    width: '640',
+                    videoId: data['video']['id'],
+                    playerVars: {
+                        'playsinline': 1,
+                        'start' : data['startTime']
+                    },
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
             });
+            })
+            // console.log(video)
+            // player = new YT.Player('videoContainer', {
+            //     height: '390',
+            //     width: '640',
+            //     videoId: video['video']['id'],
+            //     playerVars: {
+            //         'playsinline': 1
+            //     },
+            //     events: {
+            //         'onReady': onPlayerReady,
+            //         'onStateChange': onPlayerStateChange
+            //     }
+            // });
         }
 
         function onPlayerReady(event) {
