@@ -20,6 +20,15 @@ def getCurrentVideo():
         print(channel1.schedule)
         return sendBack
     
+@app.route("/error", methods = ['POST'])
+def onError():
+    if request.method == 'POST':
+        print("someone saw this!")
+        sendBack =channel1.currentVideo()
+        url = {'url': "https://www.youtube.com/watch?v=" + sendBack['video']['id'] + F"&t={sendBack['startTime']}"}
+        print(url)
+        return url
+    
 @app.route("/newSchedule")
 def createNewSchedule():
     channel1.scheduleMaker()
