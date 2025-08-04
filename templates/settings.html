@@ -1,35 +1,7 @@
+{% extends "template.html" %}
 
-<!DOCTYPE html>
-<html>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <head>
-        <title>Settings</title>
-    </head>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Peri</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/yownload">Yownloader</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/settings">Settings</a>
-            </li>
-        </ul>
-        </div>
-    </div>
-    </nav>
-    <body>
-        <!-- <div style="display: grid; grid-template-columns: 75% 25%; gap: 10px">
-            <div style="overflow-y: scroll; height: 93.5dvh;"> -->
-            
+{% block title %}Settings{% endblock %}
+{% block body %}            
 <form id="form" action="/newschedule" method="post">
     <div class="mb-3" >
     <label for="days" class="form-label">Days to create schedule to</label>
@@ -59,87 +31,4 @@
                 </ul>
             </div>
         </div> -->
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-    <script>
-    var videos = document.getElementById("myVideo");
-    function changeSource(src)
-    {
-        var video = document.getElementById("myVideo");
-        video.setAttribute('src', src["path"]);
-        video.load();
-        video.play();
-        var vidTitle = document.getElementById('vidTitle');
-        var vidAuthor = document.getElementById('author');
-        vidAuthor.innerHTML = src['author'];
-        vidTitle.innerHTML = src['title'];
-        fetchSchedule();
-    }
-    function toggleMute() 
-    {
-        var video=document.getElementById("myVideo");
-        video.muted = !video.muted;
-    }
-    function toggleFullscreen() 
-    {
-        var video=document.getElementById("myVideo");
-        video.parentNode.webkitRequestFullScreen();
-        video.style.height = screen.height;
-        video.style.width = screen.width;
-    }
-    document.addEventListener("webkitfullscreenchange", function () {
-    if(!document.webkitIsFullScreen) {
-        // Restore CSS properties here which in this case is as follows :
-        var element = document.getElementById('myVideo');
-        element.style.height=1080;
-        element.style.width="100%";
-    }
-    }, false);
-    document.addEventListener("DOMContentLoaded", function(event) {
-        fetch(`${window.origin}/currentVideo`, {method: "POST"})
-            .then(response => response.json())
-            .then(data => {changeSource(data)
-        })
-        fetchSchedule();
-    })
-    function changeToCurrent(){
-        fetch(`${window.origin}/currentVideo`, {method: "POST"})
-            .then(response => response.json())
-            .then(data => {changeSource(data)
-        })
-    }
-    function fetchSchedule(){
-            fetch(`${window.origin}/schedule`, {method: "POST"})
-            .then(response => response.json())
-            .then(data => {updateSchedule(data)
-        })
-    }
-    
-    function updateSchedule(src){
-        var scheduleList = document.getElementById('schedule')
-        scheduleList.textContent = ""
-        var toInsert = ""
-        var createdList = document.createElement("li")
-        src.forEach(element => { 
-            var createdList = document.createElement("li")
-            if (element["active"]){
-                createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start active")
-                createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} <br> ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
-                scheduleList.appendChild(createdList)
-                createdList.scrollIntoView()
-            } else {
-                createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start")
-                createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} <br> ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
-                scheduleList.appendChild(createdList)
-            }
-
-            
-            
-            // toInsert.concat(`<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} - ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
-        })
-
-    }
-    
-    
-    </script>
-</html>
+{% endblock %}

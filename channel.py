@@ -15,23 +15,24 @@ class channel:
         self.loadSchedule()
       
 
-    def addSingleToLibrary(self, id):
-        newVid = vid(id,self.client)
+    def addSingleToLibrary(self, id, category):
+        newVid = vid(id,self.client,category)
         self.library.append(newVid)
         self.saveLibrary()
         self.getUniqueSeries()
     
-    def addPlaylistToLibrary(self, id):
-        playlist = self.client.playlistItems.list('contentDetails,snippet',playlist_id=id)
-        playlistData = self.client.playlists.list('id,snippet',playlist_id=id)
+    def addPlaylistToLibrary(self, id, category):
+        playlist = self.client.playlistItems.list('contentDetails,snippet',playlist_id=id, max_results=50)
+        playlistData = self.client.playlists.list('id,snippet',playlist_id=id,max_results=50)
         series = playlistData.items[0].snippet.title
         for video in playlist.items:   
             vidId = video.contentDetails.videoId
             episode = int(video.snippet.position) + 1
-            newvid = vid(vidId,self.client,series=series,episode=episode)
+            newvid = vid(vidId,self.client,category,series=series,episode=episode)
             self.library.append(newvid)
-        self.saveLibrary()
         self.getUniqueSeries()
+        self.saveLibrary()
+
     
     def saveLibrary(self):
         toDump = {
@@ -47,21 +48,23 @@ class channel:
         self.library = []
         with open('settings/library.json','r') as fout:
             list = json.load(fout)
-            for x in list['library']:
-                vidToLoad = vid(
-                    x['id'],
-                    self.client,
-                    author= x['author'],
-                    title= x['title'],
-                    description= x['description'],
-                    duration= float(x['duration']),
-                    thumbnailUrl= x['thumbnail'],
-                    tags= x['tags'],
-                    series= x['series'],
-                    episode= x['episode']
-                )
-                self.library.append(vidToLoad)
-            self.seriesList = list['seriesList']
+            if list['library'] != []:
+                for x in list['library']:
+                    vidToLoad = vid(
+                        x['id'],
+                        self.client,
+                        x['category'],
+                        author= x['author'],
+                        title= x['title'],
+                        description= x['description'],
+                        duration= float(x['duration']),
+                        thumbnailUrl= x['thumbnail'],
+                        tags= x['tags'],
+                        series= x['series'],
+                        episode= x['episode']
+                    )
+                    self.library.append(vidToLoad)
+                self.seriesList = list['seriesList']
     
     def getUniqueSeries(self):
         self.seriesList =[]
@@ -162,14 +165,30 @@ class channel:
         for scheduledVid in self.schedule:
             if scheduledVid.startTime < currentTime and scheduledVid.endTime > currentTime:
                 timeIn = currentTime - scheduledVid.startTime
-                return {'startTime' : int(timeIn.total_seconds()), 'video' : scheduledVid.video.__dict__}
+                return {'startTime' : int(timeIn.total_seconds()), 'video' : scheduledVid.video.__dict__, 'active' : True}
+            elif scheduledVid.startTime > currentTime and previousEndTime < currentTime:
+                print("HIT PREVIOUS")
+                timeIn = scheduledVid.startTime - currentTime
+                return {'startTime' : int(timeIn.total_seconds()*1000), 'video' : scheduledVid.video.__dict__, 'active' : False}
+            previousEndTime = scheduledVid.endTime
             
-    def scheduleMaker(self):
+    def scheduleMaker(self,intermission = 10):
         self.schedule =[]
+        currentTime = datetime.now()
         seriesBlocks = self.createScheduleBySeries()
         completedList = self.scheduleForPeriod(seriesBlocks)
-        self.addToSchedule(completedList)
-
+        self.addToSchedule(completedList,currentTime,intermission= intermission)
+    
+    def sendSchedule(self):
+        schedule = self.schedule
+        currentTime = datetime.now()
+        toSend = []
+        for scheduledVid in schedule:
+            if currentTime > scheduledVid.startTime and currentTime < scheduledVid.endTime:
+                toSend.append({'active': True, 'video' : scheduledVid.video.__dict__, 'startTime' : datetime.strftime(scheduledVid.startTime,"%a, %w/%-d - %-I:%M:%S %p"), 'endTime' : scheduledVid.endTime})
+            else:
+                toSend.append({'active': False, 'video' : scheduledVid.video.__dict__, 'startTime' :  datetime.strftime(scheduledVid.startTime,"%a, %w/%-d - %-I:%M:%S %p"), 'endTime' : scheduledVid.endTime})
+        return toSend
                 
                     
 

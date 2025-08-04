@@ -42,6 +42,7 @@
             <button onclick="toggleMute()">Unmute</button>
             <button onclick="toggleFullscreen()">toggleFullscreen</button>
             <button onclick="changeSource()">change video</button>
+            <p id="description">Desription</p>
         </div>
     </div>
 
@@ -99,50 +100,51 @@
         element.height = '900';
     }
     }, false);
-    // document.addEventListener("DOMContentLoaded", function(event) {
+
+    document.addEventListener("DOMContentLoaded", function(event) {
     //     fetch(`${window.origin}/currentVideo`, {method: "POST"})
     //         .then(response => response.json())
     //         .then(data => {changeSource(data)
     //     })
-    //     fetchSchedule();
-    // })
+        fetchSchedule();
+    })
     // function changeToCurrent(){
     //     fetch(`${window.origin}/currentVideo`, {method: "POST"})
     //         .then(response => response.json())
     //         .then(data => {changeSource(data)
     //     })
     // }
-    // function fetchSchedule(){
-    //         fetch(`${window.origin}/schedule`, {method: "POST"})
-    //         .then(response => response.json())
-    //         .then(data => {updateSchedule(data)
-    //     })
-    // }
+    function fetchSchedule(){
+            fetch(`${window.origin}/schedule`, {method: "POST"})
+            .then(response => response.json())
+            .then(data => {updateSchedule(data)
+        })
+    }
     
-    // function updateSchedule(src){
-    //     var scheduleList = document.getElementById('schedule')
-    //     scheduleList.textContent = ""
-    //     var toInsert = ""
-    //     var createdList = document.createElement("li")
-    //     src.forEach(element => { 
-    //         var createdList = document.createElement("li")
-    //         if (element["active"]){
-    //             createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start active")
-    //             createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} <br> ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
-    //             scheduleList.appendChild(createdList)
-    //             createdList.scrollIntoView()
-    //         } else {
-    //             createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start")
-    //             createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} <br> ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
-    //             scheduleList.appendChild(createdList)
-    //         }
+    function updateSchedule(src){
+        var scheduleList = document.getElementById('schedule')
+        scheduleList.textContent = ""
+        var toInsert = ""
+        var createdList = document.createElement("li")
+        src.forEach(element => { 
+            var createdList = document.createElement("li")
+            if (element["active"]){
+                createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start active")
+                createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element['video']["title"]}</div>${element['video']["series"]} <br> ${element['video']['author']}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
+                scheduleList.appendChild(createdList)
+                createdList.scrollIntoView()
+            } else {
+                createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start")
+                createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element['video']["title"]}</div>${element['video']["series"]} <br> ${element['video']['author']}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
+                scheduleList.appendChild(createdList)
+            }
 
             
             
-    //         // toInsert.concat(`<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} - ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
-    //     })
+            // toInsert.concat(`<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} - ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
+        })
 
-    // }
+    }
     
     
     </script>
@@ -173,8 +175,9 @@
                         'onReady': onPlayerReady,
                         'onStateChange': onPlayerStateChange,
                         'onError' : onError
-                    }
+                    }                
             });
+            updateDetails(data)
             })
             // console.log(video)
             // player = new YT.Player('videoContainer', {
@@ -197,9 +200,13 @@
 
         function onPlayerStateChange(event) {
             if (event.data == '0'){
-                var vidTitle = document.getElementById('vidTitle')   
-                vidTitle.innerHTML = "ENDED" 
-                player.loadVideoById("7JM7pPpfIPY")
+                fetch(`${window.origin}/currentVid`, {method: "POST"})
+                .then(response => response.json())
+                .then(data => { console.log(data) 
+                player.loadVideoById(data['video']['id'],data['startTime'])
+                updateDetails(data)
+                fetchSchedule()
+            });
             }
         }
 
@@ -209,6 +216,16 @@
             .then(data => { console.log(data)            
                 window.open(data['url'],'_blank')
             });
+        }
+
+        function updateDetails(video){
+            var vidTitle = document.getElementById('vidTitle');
+            var vidAuthor = document.getElementById('author');
+            var vidDescription = document.getElementById('description');
+            vidTitle.innerHTML = video['video']['title']
+            vidAuthor.innerHTML = video['video']['author']
+            vidDescription.innerHTML = video['video']['description']
+
         }
         
     </script>

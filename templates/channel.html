@@ -1,0 +1,235 @@
+{% extends "template.html" %}
+{% block title %}Peri TV - Channel{% endblock %}
+{% block body %}
+        <!-- <div style="display: grid; grid-template-columns: 75% 25%; gap: 10px">
+            <div style="overflow-y: scroll; height: 93.5dvh;"> -->
+            
+<div style="display: grid; grid-template-columns: 75% 25%; gap: 10px">
+    <div style="overflow-y: scroll; height: 93.5dvh;">
+        <div style="background-color:white; vertical-align: top;">
+            <div id='videoContainer'></div>
+            <!-- <iframe id="videoContainer" width="100%" height="900" src="https://www.youtube.com/embed/tgbNymZ7vqY?enablejsapi=1" allow="autoplay" enablejsapi="true"> </iframe> -->
+        </div>
+        <div>          
+            <h1 id="vidTitle">TitleHere</h1>
+            <h2 id="author">test</h2>
+
+            <button onclick="toggleMute()">Unmute</button>
+            <button onclick="toggleFullscreen()">toggleFullscreen</button>
+            <button onclick="changeSource()">change video</button>
+            <p id="description">Desription</p>
+    </div>
+    </div>
+
+      <div style="overflow-y: scroll; height: 93.5dvh;">
+          <ul id="schedule" class="list-group ">
+          </ul>
+    </div>
+  </div>
+{% endblock %}
+{% block scripts %}
+<script>
+    var videos = document.getElementById("myVideo");
+    function changeSource(src)
+    {
+        var video = document.getElementById("myVideo");
+        video.setAttribute('src', src["path"]);
+        video.load();
+        video.play();
+        var vidTitle = document.getElementById('vidTitle');
+        var vidAuthor = document.getElementById('author');
+        vidAuthor.innerHTML = src['author'];
+        vidTitle.innerHTML = src['title'];
+        fetchSchedule();
+    }
+    function toggleMute() 
+    {
+        var video=document.getElementById("myVideo");
+        video.muted = !video.muted;
+    }
+    function toggleFullscreen() 
+    {
+        var video=document.getElementById("videoContainer");
+        video.parentNode.webkitRequestFullScreen();
+        video.style.height = screen.height;
+        video.style.width = screen.width;
+        video.width = '100%';
+        video.height = '100%';
+    }
+    document.addEventListener("webkitfullscreenchange", function () {
+    if(!document.webkitIsFullScreen) {
+        // Restore CSS properties here which in this case is as follows :
+        var element = document.getElementById('videoContainer');
+        element.style.removeProperty('height')
+        element.style.removeProperty('width');
+        element.width = '100%';
+        element.height = '900';
+    }
+    }, false);
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+    //     fetch(`${window.origin}/currentVideo`, {method: "POST"})
+    //         .then(response => response.json())
+    //         .then(data => {changeSource(data)
+    //     })
+        fetchSchedule();
+    })
+    // function changeToCurrent(){
+    //     fetch(`${window.origin}/currentVideo`, {method: "POST"})
+    //         .then(response => response.json())
+    //         .then(data => {changeSource(data)
+    //     })
+    // }
+    function fetchSchedule(){
+            fetch(`${window.origin}/schedule`, {method: "POST"})
+            .then(response => response.json())
+            .then(data => {updateSchedule(data)
+        })
+    }
+    
+    function updateSchedule(src){
+        var scheduleList = document.getElementById('schedule')
+        scheduleList.textContent = ""
+        var toInsert = ""
+        var createdList = document.createElement("li")
+        src.forEach(element => { 
+            var createdList = document.createElement("li")
+            if (element["active"]){
+                createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start active")
+                createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element['video']["title"]}</div>${element['video']["series"]} <br> ${element['video']['author']}</div><div style="float: right;"><img src=${element['video']['thumbnail']} height=84 width= 150><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span></div>`);
+                scheduleList.appendChild(createdList)
+                createdList.scrollIntoView()
+            } else {
+                createdList.setAttribute('class',"list-group-item d-flex justify-content-between align-items-start")
+                createdList.innerHTML = toInsert.concat(`<div class="ms-2 me-auto"><div class="fw-bold">${element['video']["title"]}</div>${element['video']["series"]} <br> ${element['video']['author']}</div><div style="float: right;"><img src=${element['video']['thumbnail']} height=84 width= 150><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span></div>`);
+                scheduleList.appendChild(createdList)
+            }
+
+            
+            
+            // toInsert.concat(`<li class="list-group-item d-flex justify-content-between align-items-start"><div class="ms-2 me-auto"><div class="fw-bold">${element["title"]}</div>${element["series"]} - ${element.author}</div><span class="badge text-bg-primary rounded-pill">${element["startTime"]}</span>`);
+        })
+
+    }
+    
+    
+    </script>
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+    var intialPlayData
+    var player;
+    function onYouTubeIframeAPIReady() {
+        fetch(`${window.origin}/currentVid`, {method: "POST"})
+        .then(response => response.json())
+        .then(data => { console.log(data)
+            if (data['active']){
+            player = new YT.Player('videoContainer', {
+                height: '900',
+                width: '100%',
+                videoId: data['video']['id'],
+                playerVars: {
+                    'playsinline': 1,
+                    'start' : data['startTime']
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange,
+                    'onError' : onError
+                }                
+                })
+            };
+            if (data['active'] == false){
+                intialPlayData = data
+                player = new YT.Player('videoContainer', {
+                    height: '900',
+                    width: '100%',
+                    videoId: data['video']['id'],
+                    playerVars: {
+                        'playsinline': 1,
+                    },
+                    events: {
+                        'onReady': onWaitReady,
+                        'onStateChange': onPlayerStateChange,
+                        'onError' : onError
+                    }                
+                })
+
+            }
+        updateDetails(data)
+        })
+            // console.log(video)
+            // player = new YT.Player('videoContainer', {
+            //     height: '390',
+            //     width: '640',
+            //     videoId: video['video']['id'],
+            //     playerVars: {
+            //         'playsinline': 1
+            //     },
+            //     events: {
+            //         'onReady': onPlayerReady,
+            //         'onStateChange': onPlayerStateChange
+            //     }
+            // });
+        }
+
+        function onPlayerReady(event) {
+                event.target.playVideo();
+        }
+
+        function onWaitReady(event) {
+            timeout = setTimeout(playVideo1,intialPlayData['startTime']);
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == '0'){
+                fetch(`${window.origin}/currentVid`, {method: "POST"})
+                .then(response => response.json())
+                .then(data => { console.log(data) 
+                    if (data['active']){
+                        player.loadVideoById(intialPlayData['video']['id'],data['startTime']);
+                        updateDetails(data);
+                    }
+                    if (data['active'] == false){
+                        player.cueVideoById(data['video']['id']);
+                        console.log(data['startTime']);
+                        timeout = setTimeout(playVideo1,data['startTime']);
+                        updateDetails(data);
+                    }                    
+                    fetchSchedule();
+            });
+            }
+        }
+
+        function onError(event){
+            fetch(`${window.origin}/error`, {method: "POST"})
+            .then(response => response.json())
+            .then(data => { console.log(data)            
+                window.open(data['url'],'_blank')
+            });
+        }
+
+        function playVideo1(){
+            console.log("HIT")
+            player.playVideo()
+        }
+
+        function updateDetails(video){
+            var vidTitle = document.getElementById('vidTitle');
+            var vidAuthor = document.getElementById('author');
+            var vidDescription = document.getElementById('description');
+            vidTitle.innerHTML = video['video']['title']
+            vidAuthor.innerHTML = video['video']['author']
+            vidDescription.innerHTML = video['video']['description']
+
+        }
+        
+    </script>
+{% endblock %}
