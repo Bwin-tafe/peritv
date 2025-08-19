@@ -10,6 +10,8 @@ class channel:
         self.name = name
         self.library : list[vid] = []
         self.seriesList : list = []
+        self.tagList : list = []
+        self.authorList : list = []
         self.loadLibrary()
         self.schedule : list[scheduledVid] = []
         self.loadSchedule()
@@ -21,15 +23,24 @@ class channel:
         self.saveLibrary()
         self.getUniqueSeries()
     
-    def addPlaylistToLibrary(self, id, category):
+    def addPlaylistToLibrary(self, id, category,includeSeries : bool):
         playlist = self.client.playlistItems.list('contentDetails,snippet',playlist_id=id, max_results=50)
         playlistData = self.client.playlists.list('id,snippet',playlist_id=id,max_results=50)
-        series = playlistData.items[0].snippet.title
-        for video in playlist.items:   
-            vidId = video.contentDetails.videoId
-            episode = int(video.snippet.position) + 1
-            newvid = vid(vidId,self.client,category,series=series,episode=episode)
-            self.library.append(newvid)
+        if includeSeries:
+            series = playlistData.items[0].snippet.title
+            for video in playlist.items:   
+                vidId = video.contentDetails.videoId
+                episode = int(video.snippet.position) + 1
+                newvid = vid(vidId,self.client,category,series=series,episode=episode)
+                self.library.append(newvid)
+        else:
+            series = "none"
+            for video in playlist.items:   
+                vidId = video.contentDetails.videoId
+                episode = int(video.snippet.position) + 1
+                newvid = vid(vidId,self.client,category,series=series,episode=episode)
+                newvid.tags.append("playlist: "+ playlistData.items[0].snippet.title)
+                self.library.append(newvid)
         self.getUniqueSeries()
         self.saveLibrary()
 
@@ -37,7 +48,9 @@ class channel:
     def saveLibrary(self):
         toDump = {
             'library':[],
-            'seriesList' : self.seriesList
+            'seriesList' : self.seriesList,
+            'authorList' : self.authorList,
+            'tagList' : self.tagList
             }
         for x in self.library:
             toDump['library'].append(x.__dict__)
@@ -65,25 +78,37 @@ class channel:
                     )
                     self.library.append(vidToLoad)
                 self.seriesList = list['seriesList']
+                self.tagList = list['tagList']
+                self.authorList = list['authorList']
     
     def getUniqueSeries(self):
         self.seriesList =[]
         for x in self.library:
             if x.series not in self.seriesList:
                 self.seriesList.append(x.series)
+            if x.author not in self.authorList:
+                self.authorList.append(x.author)
+            if x.tags != None:
+                for tag in x.tags:
+                    if tag not in self.tagList:
+                        self.tagList.append(tag)
 
 
-    def createScheduleBySeries(self):
+    def createScheduleBySeries(self,altLibrary = []):
         videoSortedBySeries = []
+        if altLibrary != []:
+            libraryToBeSorted = altLibrary
+        else:
+            libraryToBeSorted = self.library
         for series in self.seriesList:
             videoToBeadded = []
             if series != "none":
-                for video in self.library:
+                for video in libraryToBeSorted:
                     if video.series == series:
                         videoToBeadded.append(video)
                 videoToBeadded.sort(key=lambda x: x.episode)
                 videoSortedBySeries.append(videoToBeadded)
-        for video in self.library:
+        for video in libraryToBeSorted:
             if video.series == "none":
                 videoSortedBySeries.append([video])
         random.shuffle(videoSortedBySeries)
@@ -97,6 +122,18 @@ class channel:
         #         )
         #         self.schedule.append(scheduledVidToAdd)
         #         startTime = scheduledVidToAdd.endTime + timedelta(seconds=scheduledVidToAdd.intermission)
+
+    def scheduleFilter(self,tags = [], author = [], category = []):
+        filteredVids = []
+        for video in self.library:
+            if video.author in author:
+                filteredVids.append(video)
+            for tag in video.tags:
+                if tag in tags:
+                    filteredVids.append(video)
+            if video.category in category:
+                filteredVids.append(video)
+        return filteredVids
     
     def scheduleForPeriod(self, sortedVideos : list[list[vid]], selectionBuffer : int = 1, totalDays : int = 7):
         maxNumber = len(sortedVideos)
@@ -172,11 +209,22 @@ class channel:
                 return {'startTime' : int(timeIn.total_seconds()*1000), 'video' : scheduledVid.video.__dict__, 'active' : False}
             previousEndTime = scheduledVid.endTime
             
-    def scheduleMaker(self,intermission = 10):
+    def scheduleMaker(self,intermission = 10, bufferSize = 5, totalDays = 7, filterByTag = [], filterByCategory = [], filterByAuthor = []):
         self.schedule =[]
         currentTime = datetime.now()
-        seriesBlocks = self.createScheduleBySeries()
-        completedList = self.scheduleForPeriod(seriesBlocks)
+        if filterByCategory != []:
+            print(filterByCategory)
+            filteredvids = self.scheduleFilter(category= filterByCategory)
+            seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)
+        elif filterByAuthor !=[]:
+            filteredvids = self.scheduleFilter(author= filterByAuthor)     
+            seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)    
+        elif filterByTag != []:
+            filteredvids = self.scheduleFilter(tags= filterByTag)
+            seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)     
+        else:
+            seriesBlocks = self.createScheduleBySeries()
+        completedList = self.scheduleForPeriod(seriesBlocks, selectionBuffer= bufferSize, totalDays= totalDays)
         self.addToSchedule(completedList,currentTime,intermission= intermission)
     
     def sendSchedule(self):

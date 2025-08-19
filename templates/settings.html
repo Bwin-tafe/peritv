@@ -2,23 +2,40 @@
 
 {% block title %}Settings{% endblock %}
 {% block body %}            
-<form id="form" action="/newschedule" method="post">
+<form id="form" action="/newSchedule" method="post">
     <div class="mb-3" >
     <label for="days" class="form-label">Days to create schedule to</label>
     <input type="number" class="form-control" name="days">
     <label for="category" class="form-label">Only include category:</label>
     <select class="form-select" aria-label="Default select example" name="category">
-        <option selected>All</option>
+        <option selected value="all">All</option>
         
             <option value="gameplay">gameplay</option>
         
             <option value="stream">stream</option>
         
-            <option value="youtube">youtube</option>
+            <option value="essay">Essay</option>
+
+            <option value="General">General</option>
         
-    </select>   
+    </select>
+    <label for="author" class="form-label">Only include Author:</label>
+    <select class="form-select" aria-label="Default select example" name="author" multiple>
+        <option selected value="all">All</option>    
+        {%for x in authors%}
+        <option value="{{x}}">{{x}}</option>
+        {%endfor%}
+    </select>
+    <label for="tag" class="form-label">Only include tag(s):</label>
+    <select class="form-select" aria-label="Default select example" name="tag" multiple>
+        {%for i in tags%}
+            <option value="{{i}}">{{i}}</option>
+        {%endfor%}
+    </select>
     <label for="buffer"> Random Buffer size</label>
     <input type="number" class="form-control" name="buffer">
+    <label for="intermission"> Seconds between videos</label>
+    <input type="number" class="form-control" name="intermission">
     <button type="submit" class="btn btn-primary">New Schedule</button>
     </div>
 </form>

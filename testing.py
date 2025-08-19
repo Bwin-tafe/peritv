@@ -7,7 +7,18 @@ playlist_id='PLENRDRBm-Rgy8-lzxbCqqpSJo_-iVlkOu'
 
 channel1 = channel(client,"The Big Boy")
 # channel1.addSingleToLibrary("Ke-6WW-xGic")
-channel1.addPlaylistToLibrary(playlist_id,"stream")
+# channel1.addPlaylistToLibrary(playlist_id,"stream")
+for x in channel1.library:
+    if x.author == 'Majuular':
+        x.tags = ['playlist: Ultima Retrospective']
+    if x.author == 'Matt McMuscles':
+        x.tags = ['playlist: The Worst Fighting Game']
+channel1.getUniqueSeries()
+channel1.saveLibrary()
+
+
+# test = channel1.library[-1].tags
+# print(test[0])
 
 # channel1.getUniqueSeries()
 # channel1.saveLibrary()
@@ -17,15 +28,15 @@ channel1.addPlaylistToLibrary(playlist_id,"stream")
 # for x in channel1.library:
 #     print(x)
 
-print(channel1.__dict__['library'][0].__dict__)
-print(channel1.seriesList)
+# print(channel1.__dict__['library'][0].__dict__)
+# print(channel1.seriesList)
 
 # test = channel1.createScheduleBySeries()
 
 # again = channel1.scheduleForPeriod(test,selectionBuffer=1)
 
 # channel1.addToSchedule(again)
-channel1.saveLibrary()
+# channel1.saveLibrary()
 
 # channel1.loadSchedule()
 # for x in channel1.schedule:

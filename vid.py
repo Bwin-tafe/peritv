@@ -22,7 +22,9 @@ class vid:
                 self.thumbnail = ytData.items[0].snippet.thumbnails.maxres.url
             else:
                 self.thumbnail = None
-            self.tags = ytData.items[0].snippet.tags
+            # self.tags = ytData.items[0].snippet.tags
+            # if self.tags == None:
+            self.tags = []
         else:
             self.author = author
             self.title = title

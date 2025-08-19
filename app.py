@@ -27,9 +27,18 @@ def onError():
         print(url)
         return url
     
-@app.route("/newSchedule")
+@app.route("/newSchedule", methods = ['POST'])
 def createNewSchedule():
-    channel1.scheduleMaker(intermission= 10)
+    print(request.form.get('category'))
+    if request.method == 'POST':
+        if request.form.get('category') != "all":
+            channel1.scheduleMaker(filterByCategory= request.form.getlist('category'), intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))
+        elif request.form.getlist("author") != ["all"]:
+            channel1.scheduleMaker(filterByAuthor= request.form.getlist("author"), intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))           
+        elif request.form.getlist("tag") != []:
+            channel1.scheduleMaker(filterByTag= request.form.getlist("tag"), intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))
+        elif request.form.get('category') == "all":
+            channel1.scheduleMaker(intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))
     return redirect("/")
 
 @app.route("/schedule", methods = ['POST'])
@@ -39,7 +48,7 @@ def getSchedule():
 
 @app.route("/settings")
 def settings():
-    return render_template('settings.html')
+    return render_template('settings.html', tags = channel1.tagList, authors = channel1.authorList)
 
 @app.route("/yownload",methods = ['POST','GET'])
 def yownloader():
@@ -48,7 +57,10 @@ def yownloader():
         category = request.form.get('category')
         idType = request.form.get('mode')
         if idType == 'playlist':
-            channel1.addPlaylistToLibrary(id,category)
+            if request.form.get('series') == 'series':
+                channel1.addPlaylistToLibrary(id,category,True)
+            else:
+                channel1.addPlaylistToLibrary(id,category,False)
         elif idType == 'single':
             channel1.addSingleToLibrary(id,category)
     return render_template('yownload.html')

@@ -12,28 +12,42 @@
     <div id="urlHelp" class="form-text">Enter a youtube URL, Playlists will also work!</div>
         <label for="typeofurl" class="form-label">Type of URL: </label>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="mode" id="single" value="single">
+        <input class="form-check-input" type="radio" name="mode" id="single" value="single" onchange="singleCheck(this)">
         <label class="form-check-label" for="single">
             Single Video
         </label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="mode" id="playlist" value="playlist" checked>
+        <input class="form-check-input" type="radio" name="mode" id="playlist" value="playlist" onchange="playlistCheck(this);">
         <label class="form-check-label" for="playlist">
             Playlist
         </label>
     </div>
     <select class="form-select" aria-label="Default select example" name="category">
-        <option selected>All</option>
+        <option selected value="general">General</option>
         
-            <option value="gameplay">gameplay</option>
+            <option value="gameplay">Gameplay</option>
         
-            <option value="stream">stream</option>
+            <option value="stream">Stream</option>
         
-            <option value="youtube">essay</option>
+            <option value="essay">Essay</option>
         
-    </select>   
+    </select>
+    <div class="form-check form-check-inline" id="seriesDiv" style="display: none;">
+        <input class="form-check-input" type="radio" name="series" id="series" value="series">
+        <label class="form-check-label" for="series">
+            Add playlist as a series
+        </label>
+    </div>
+    <div class="form-check form-check-inline" id="noneDiv" style="display: none">
+        <input class="form-check-input" type="radio" name="series" id="none" value="none">
+        <label class="form-check-label" for="none">
+            Add each video as a single video. (will instead add playlist title as a tag)
+        </label>
+    </div>
+    <div>
     <button type="submit" class="btn btn-primary">Yownload</button>
+    </div>
 </div>
 </form>
 </div>
@@ -46,5 +60,26 @@
                 </ul>
             </div>
         </div> -->
+{% endblock %}
+{% block scripts %}
+<script>
+    function playlistCheck(check){
+        if (check.value == 'playlist'){
+            var seriesButtonID = document.getElementById('seriesDiv');
+            var seriesButtonNone = document.getElementById('noneDiv');
+            seriesButtonID.removeAttribute("style");
+            seriesButtonNone.removeAttribute("style");
+        }
+    }
+
+    function singleCheck(check){
+         if (check.value == 'single'){
+            var seriesButtonID = document.getElementById('seriesDiv');
+            var seriesButtonNone = document.getElementById('noneDiv');
+            seriesButtonID.style.display= "none";
+            seriesButtonNone.style.display= "none";
+        }       
+    }
+</script>
 {% endblock %}
 
