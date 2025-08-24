@@ -6,7 +6,7 @@ import re
 class vid:
     def __init__(self, id : str, client : Client, category, author : str = "none", title : str = "none", description : str = "none", duration : float = 0, thumbnailUrl : str = "none", tags: list = [], series : str = "none", episode : int = 0):
         self.id = id
-        if author == "none" and title == "none" and description == "none" and duration == 0 and thumbnailUrl == "none" and tags == []:
+        if author == "none" and title == "none" and description == "none" and duration == 0 and thumbnailUrl == "none":
             ytData = client.videos.list(video_id=id)
             self.author = ytData.items[0].snippet.channelTitle
             self.title = ytData.items[0].snippet.title
@@ -31,7 +31,7 @@ class vid:
             self.description = description
             self.duration = duration
             self.thumbnail = thumbnailUrl
-            self.tags = tags
+        self.tags = tags
         self.series = series
         self.episode = episode
         self.category = category

@@ -17,8 +17,8 @@ class channel:
         self.loadSchedule()
       
 
-    def addSingleToLibrary(self, id, category):
-        newVid = vid(id,self.client,category)
+    def addSingleToLibrary(self, id, category, series= "none", tags=[], episode=0):
+        newVid = vid(id,self.client,category,series=series, tags= tags, episode=episode)
         self.library.append(newVid)
         self.saveLibrary()
         self.getUniqueSeries()
@@ -56,6 +56,28 @@ class channel:
             toDump['library'].append(x.__dict__)
         with open('settings/library.json','w+') as fout:
             json.dump(toDump,fout)
+    
+    def deleteVid(self, id):
+        for video in self.library:
+            if video.id == id:
+                self.library.remove(video)
+        self.getUniqueSeries()
+        self.saveLibrary()
+
+    def editVid(self, id, title,author,series,episode,category,tags):
+        if tags == "invalid":
+            tags == []
+        for video in self.library:
+            if video.id == id:
+                video.title = title
+                video.author = author
+                video.series = series
+                video.episode = episode
+                video.category = category
+                video.tags = tags
+                break
+        self.getUniqueSeries()
+        self.saveLibrary()
     
     def loadLibrary(self):
         self.library = []
@@ -221,7 +243,7 @@ class channel:
             seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)    
         elif filterByTag != []:
             filteredvids = self.scheduleFilter(tags= filterByTag)
-            seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)     
+            seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)
         else:
             seriesBlocks = self.createScheduleBySeries()
         completedList = self.scheduleForPeriod(seriesBlocks, selectionBuffer= bufferSize, totalDays= totalDays)

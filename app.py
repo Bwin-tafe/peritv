@@ -56,11 +56,41 @@ def yownloader():
         id = request.form.get('url')
         category = request.form.get('category')
         idType = request.form.get('mode')
+        seriesToAdd= request.form.get('series')
+        tagsToAdd= request.form.getlist('tag')
+        episodeToAdd = request.form.get('episode')
         if idType == 'playlist':
             if request.form.get('series') == 'series':
                 channel1.addPlaylistToLibrary(id,category,True)
             else:
                 channel1.addPlaylistToLibrary(id,category,False)
         elif idType == 'single':
-            channel1.addSingleToLibrary(id,category)
-    return render_template('yownload.html')
+            if seriesToAdd != "none":
+                channel1.addSingleToLibrary(id,category,series=seriesToAdd,tags=tagsToAdd,episode=episodeToAdd)
+            else:
+                channel1.addSingleToLibrary(id,category,tags=tagsToAdd)
+    return render_template('yownload.html',series= channel1.seriesList, tags= channel1.tagList)
+
+@app.route("/library", methods= ['POST','GET'])
+def videdit():
+    return render_template('videdit.html', videos = channel1.library, series = channel1.seriesList)
+
+@app.route("/deletevid", methods= ['POST'])
+def deleteVid():
+    channel1.deleteVid(request.form.get('id'))
+    return redirect("/library")
+
+@app.route("/updateVid", methods=['POST'])
+def updateVid():
+    id = request.form.get("id")
+    title = request.form.get("title")
+    author = request.form.get("author")
+    series = request.form.get("series")
+    episode = request.form.get("episode")
+    category = request.form.get("category")
+    if request.form.get("tags")[0] == "[" and request.form.get("tags")[-1] == "]":
+        tags = request.form.get("tags")[1:-1].replace("'","").replace('"',"").split(",")
+    else:
+        tags = "invalid"
+    channel1.editVid(id,title,author,series,episode,category,tags)
+    return redirect("/library")

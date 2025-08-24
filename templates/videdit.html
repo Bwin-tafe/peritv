@@ -1,0 +1,87 @@
+{% extends "template.html" %}
+{% block title %}Yownloader{% endblock %}
+{% block body %}
+    <div class="accordion" id="accordionExample" style="display: grid; grid-template-columns: 25% 25% 25% 25%;">
+        {%for x in videos%}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{x.id}}" aria-expanded="false" aria-controls="{{x.id}}">
+                    <div width="100px" style="margin-right: 5px;"><img src="{{x.thumbnail}}" width= 100px></div>
+                    <div width="85%">{{x.title}}</div>
+                </button>
+                </h2>
+                <div id="{{x.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="mb-3">
+                        <form action="/updateVid" style="display: grid; grid-template-columns: 33% 33% 33%; gap: 10px;" method="post">
+                            <input type="hidden" name="id" id="id" value="{{x.id}}">
+                            <div style="grid-column: 1/-1">
+                                Title
+                                <input type="text" value="{{x.title}}" class="form-control" id="title" name="title">
+                            </div>
+                            <div>
+                                Author
+                                <input type="text" value="{{x.author}}" class="form-control" id="author" name="author">
+                            </div>
+                            <div>
+                                Duration<br>
+                                {{x.duration}} Seconds
+                            </div>
+                            <div>
+                                Series:
+                                <select class="form-select" aria-label="Default select example" name="series" id="series">
+                                    {%for s in series%}
+                                    {% if s == x.series%}
+                                        <option value="{{s}}" selected>{{s}}</option>
+                                    {% else %}
+                                        <option value="{{s}}">{{s}}</option>    
+                                    {%endif%}
+                                    {%endfor%}
+                                </select>
+                            </div>
+                            <div>
+                                Episode Number
+                                <input type="number" class="form-control" value="{{x.episode}}" id="episode" name="episode">
+                            </div>
+                            <div>
+                                Category
+                                <select class="form-select" aria-label="Default select example" name="xategory" id="category">
+                                    {% if x.category == "general"%}
+                                        <option value="general" selected>General</option>
+                                    {% else %}
+                                        <option value="general">General</option> 
+                                    {%endif%}
+                                    {% if x.category == "gameplay"%}
+                                        <option value="gameplay" selected>Gameplay</option>
+                                    {% else %}
+                                        <option value="gameplay" >Gameplay</option>
+                                    {%endif%}
+                                    {% if x.category == "stream"%}
+                                        <option value="stream" selected>Stream</option>
+                                    {% else %}
+                                        <option value="stream">Stream</option>
+                                    {%endif%}
+                                    {% if x.category == "essay"%}
+                                        <option value="essay" selected>Essay</option>
+                                    {% else %}
+                                        <option value="essay">Essay</option>
+                                    {%endif%}
+                                </select>
+                            </div>
+                            <div style="grid-column: 1/-1">
+                                Tags
+                                <input type="text" value="{{x.tags}}" class="form-control" id="tags" name="tags">
+                            </div>
+                            <button  type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                        <form action="/deletevid" method="post">
+                            <input type="hidden" name="id" id="id" value="{{x.id}}">
+                            <button type="submit" class="btn btn-danger" style="float: right;">Delete</button></form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        {%endfor%}
+    </div>
+
+{% endblock %}

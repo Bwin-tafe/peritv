@@ -45,6 +45,26 @@
             Add each video as a single video. (will instead add playlist title as a tag)
         </label>
     </div>
+    <div id="seriesList" style="display: none;">
+        <label class="form-select-label" for="series">Add single video to series</label>
+        <select class="form-select" aria-label="Default select example" name="series" onchange="seriesCheck(this)">
+            <option selected value="none">none</option>
+            {%for x in series%}
+                <option value="{{x}}">{{x}}</option>
+            {%endfor%}
+        </select>
+        <div id="episodeInput" style="display: none;">
+            <label for="episode" class="form-label">Episode Number</label>
+            <input type="text" class="form-control" name="episode">
+        </div>
+        <label class="form-select-label" for="series">Add Tags to this Video</label>
+        <select class="form-select" aria-label="Default select example" name="tag" multiple>
+        {%for i in tags%}
+            <option value="{{i}}">{{i}}</option>
+        {%endfor%}
+        </select>
+    </select>
+    </div>    
     <div>
     <button type="submit" class="btn btn-primary">Yownload</button>
     </div>
@@ -65,10 +85,13 @@
 <script>
     function playlistCheck(check){
         if (check.value == 'playlist'){
+            var episodeField = document.getElementById("episodeInput")
             var seriesButtonID = document.getElementById('seriesDiv');
             var seriesButtonNone = document.getElementById('noneDiv');
             seriesButtonID.removeAttribute("style");
             seriesButtonNone.removeAttribute("style");
+            episodeField.style.display="none";
+            seriesList.style.display="none";
         }
     }
 
@@ -76,9 +99,21 @@
          if (check.value == 'single'){
             var seriesButtonID = document.getElementById('seriesDiv');
             var seriesButtonNone = document.getElementById('noneDiv');
+            var seriesList = document.getElementById('seriesList');
             seriesButtonID.style.display= "none";
             seriesButtonNone.style.display= "none";
+            seriesList.removeAttribute("style")
         }       
+    }
+
+    function seriesCheck(check){
+        var episodeField = document.getElementById("episodeInput")
+        if (check.value != 'none'){
+            episodeField.removeAttribute("style");
+        }
+        if (check.value == 'none'){
+            episodeField.style.display="none";
+        }
     }
 </script>
 {% endblock %}
