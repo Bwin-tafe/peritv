@@ -1,4 +1,4 @@
-from flask import Flask, request,redirect,url_for,render_template
+from flask import Flask, request,redirect,url_for,render_template, jsonify
 from channel import channel
 from vid import vid,scheduledVid
 from pyyoutube import Client
@@ -6,6 +6,10 @@ from pyyoutube import Client
 app = Flask(__name__)
 client = Client(api_key="AIzaSyDmM_aj7-NDhG1L_hWVD9ZUgr_Stn5mdls")
 channel1 = channel(client,"The Big Boy")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 @app.route("/")
 def hello_world():
@@ -43,7 +47,8 @@ def createNewSchedule():
 
 @app.route("/schedule", methods = ['POST'])
 def getSchedule():
-    toSend= channel1.sendSchedule()
+    toSend= jsonify(channel1.sendSchedule())
+    print(toSend)
     return toSend
 
 @app.route("/settings")

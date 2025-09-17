@@ -8,22 +8,28 @@ class vid:
         self.id = id
         if author == "none" and title == "none" and description == "none" and duration == 0 and thumbnailUrl == "none":
             ytData = client.videos.list(video_id=id)
-            self.author = ytData.items[0].snippet.channelTitle
-            self.title = ytData.items[0].snippet.title
-            self.description = ytData.items[0].snippet.description
-            durationList = re.findall(r'\d+',ytData.items[0].contentDetails.duration)
-            if len(durationList) == 1:
-                self.duration = timedelta(seconds=int(durationList[0])).total_seconds()
-            elif len(durationList) == 2:
-                self.duration = timedelta(minutes=int(durationList[0]),seconds=int(durationList[1])).total_seconds()
-            elif len(durationList) == 3:
-                self.duration = timedelta(hours=int(durationList[0]),minutes=int(durationList[1]),seconds=int(durationList[2])).total_seconds()
-            if ytData.items[0].snippet.thumbnails.maxres != None:
-                self.thumbnail = ytData.items[0].snippet.thumbnails.maxres.url
+            if ytData.items == []:
+                self.author = "invalid"
+                self.title = "invalid"
+                self.description = "invalid"
+                self.duration = 0
             else:
-                self.thumbnail = None
-            # self.tags = ytData.items[0].snippet.tags
-            # if self.tags == None:
+                self.author = ytData.items[0].snippet.channelTitle
+                self.title = ytData.items[0].snippet.title
+                self.description = ytData.items[0].snippet.description
+                durationList = re.findall(r'\d+',ytData.items[0].contentDetails.duration)
+                if len(durationList) == 1:
+                    self.duration = timedelta(seconds=int(durationList[0])).total_seconds()
+                elif len(durationList) == 2:
+                    self.duration = timedelta(minutes=int(durationList[0]),seconds=int(durationList[1])).total_seconds()
+                elif len(durationList) == 3:
+                    self.duration = timedelta(hours=int(durationList[0]),minutes=int(durationList[1]),seconds=int(durationList[2])).total_seconds()
+                if ytData.items[0].snippet.thumbnails.maxres != None:
+                    self.thumbnail = ytData.items[0].snippet.thumbnails.maxres.url
+                else:
+                    self.thumbnail = None
+                # self.tags = ytData.items[0].snippet.tags
+                # if self.tags == None:
             self.tags = []
         else:
             self.author = author

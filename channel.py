@@ -18,10 +18,11 @@ class channel:
       
 
     def addSingleToLibrary(self, id, category, series= "none", tags=[], episode=0):
-        newVid = vid(id,self.client,category,series=series, tags= tags, episode=episode)
-        self.library.append(newVid)
-        self.saveLibrary()
-        self.getUniqueSeries()
+        if self.duplicateCheck(id) == False:
+            newVid = vid(id,self.client,category,series=series, tags= tags, episode=episode)
+            self.library.append(newVid)
+            self.saveLibrary()
+            self.getUniqueSeries()
     
     def addPlaylistToLibrary(self, id, category,includeSeries : bool):
         playlist = self.client.playlistItems.list('contentDetails,snippet',playlist_id=id, max_results=50)
@@ -31,16 +32,23 @@ class channel:
             for video in playlist.items:   
                 vidId = video.contentDetails.videoId
                 episode = int(video.snippet.position) + 1
-                newvid = vid(vidId,self.client,category,series=series,episode=episode)
-                self.library.append(newvid)
+                if self.duplicateCheck(vidId) == False:
+                    episode = int(video.snippet.position) + 1
+                    newvid = vid(vidId,self.client,category,series=series,episode=episode)
+                    if newvid.author != "invalid":
+                        self.library.append(newvid)
         else:
             series = "none"
-            for video in playlist.items:   
+            playlistName = playlistData.items[0].snippet.title
+            for video in playlist.items:
                 vidId = video.contentDetails.videoId
                 episode = int(video.snippet.position) + 1
-                newvid = vid(vidId,self.client,category,series=series,episode=episode)
-                newvid.tags.append("playlist: "+ playlistData.items[0].snippet.title)
-                self.library.append(newvid)
+                if self.duplicateCheck(vidId) == False:
+                    newvid = vid(vidId,self.client,category,series=series,episode=episode)
+                    if newvid.author != "invalid":
+                        newvid.tags =["playlist: "+ playlistName]
+                        print(newvid.tags)
+                        self.library.append(newvid)
         self.getUniqueSeries()
         self.saveLibrary()
 
@@ -55,7 +63,7 @@ class channel:
         for x in self.library:
             toDump['library'].append(x.__dict__)
         with open('settings/library.json','w+') as fout:
-            json.dump(toDump,fout)
+            json.dump(toDump,fout,indent= 2)
     
     def deleteVid(self, id):
         for video in self.library:
@@ -105,6 +113,8 @@ class channel:
     
     def getUniqueSeries(self):
         self.seriesList =[]
+        self.tagList = []
+        self.authorList = []
         for x in self.library:
             if x.series not in self.seriesList:
                 self.seriesList.append(x.series)
@@ -202,7 +212,7 @@ class channel:
             }
             toDump.append(toAdd)
         with open(f'settings/{self.name}_schedule.json','w+') as fout:
-            json.dump(toDump,fout)    
+            json.dump(toDump,fout, indent= 2)    
 
     def loadSchedule(self):
         self.schedule = []
@@ -259,6 +269,12 @@ class channel:
             else:
                 toSend.append({'active': False, 'video' : scheduledVid.video.__dict__, 'startTime' :  datetime.strftime(scheduledVid.startTime,"%a, %w/%-d - %-I:%M:%S %p"), 'endTime' : scheduledVid.endTime})
         return toSend
+    
+    def duplicateCheck(self,id):
+        for video in self.library:
+            if video.id == id:
+                return True
+        return False
                 
                     
 
