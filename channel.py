@@ -171,9 +171,13 @@ class channel:
         #         self.schedule.append(scheduledVidToAdd)
         #         startTime = scheduledVidToAdd.endTime + timedelta(seconds=scheduledVidToAdd.intermission)
 
-    def scheduleFilter(self,tags = [], author = [], category = []):
+    def scheduleFilter(self,tags = [], author = [], category = [], alt_library = []):
         filteredVids = []
-        for video in self.library:
+        if alt_library == []:
+            list_of_vids = self.library
+        else:
+            list_of_vids = alt_library
+        for video in list_of_vids:
             if video.author in author:
                 filteredVids.append(video)
             for tag in video.tags:
@@ -260,18 +264,23 @@ class channel:
     def scheduleMaker(self,intermission = 10, bufferSize = 5, totalDays = 7, filterByTag = [], filterByCategory = [], filterByAuthor = []):
         self.schedule =[]
         currentTime = datetime.now()
-        if filterByCategory != []:
+        filteredvids = self.library
+        if filterByCategory != ["all"]:
             print(filterByCategory)
             filteredvids = self.scheduleFilter(category= filterByCategory)
-            seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)
-        elif filterByAuthor !=[]:
-            filteredvids = self.scheduleFilter(author= filterByAuthor)     
-            seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)    
-        elif filterByTag != []:
-            filteredvids = self.scheduleFilter(tags= filterByTag)
-            seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)
-        else:
+            # seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)
+        if filterByAuthor !=['all']:
+            filteredvids = self.scheduleFilter(author= filterByAuthor, alt_library= filteredvids)     
+            # seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)    
+        if filterByTag != []:
+            filteredvids = self.scheduleFilter(tags= filterByTag, alt_library= filteredvids)
+        if filterByCategory == ['all'] and filterByAuthor ==[] and filterByTag == []:
             seriesBlocks = self.createScheduleBySeries()
+        else:
+            seriesBlocks = self.createScheduleBySeries(filteredvids)
+            # seriesBlocks = self.createScheduleBySeries(altLibrary=filteredvids)
+
+        
         completedList = self.scheduleForPeriod(seriesBlocks, selectionBuffer= bufferSize, totalDays= totalDays)
         self.addToSchedule(completedList,currentTime,intermission= intermission)
     

@@ -27,22 +27,28 @@ def onError():
     if request.method == 'POST':
         print("Playback Error")
         sendBack =channel1.currentVideo()
-        url = {'url': "https://www.youtube.com/watch?v=" + sendBack['video']['id'] + F"&t={sendBack['startTime']}"}
+        if sendBack['active'] == True:
+            url = {'url': "https://www.youtube.com/watch?v=" + sendBack['video']['id'] + F"&t={sendBack['startTime']}"}
+        elif sendBack['active'] == False:
+            url = {'url': "https://www.youtube.com/watch?v=" + sendBack['video']['id']}
+
         print(url)
         return url
     
 @app.route("/newSchedule", methods = ['POST'])
 def createNewSchedule():
     print(request.form.get('category'))
+    print(request.form.getlist("tag"))
+    print(request.form.getlist("author"))
     if request.method == 'POST':
-        if request.form.get('category') != "all":
-            channel1.scheduleMaker(filterByCategory= request.form.getlist('category'), intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))
-        elif request.form.getlist("author") != ["all"]:
-            channel1.scheduleMaker(filterByAuthor= request.form.getlist("author"), intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))           
-        elif request.form.getlist("tag") != []:
-            channel1.scheduleMaker(filterByTag= request.form.getlist("tag"), intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))
-        elif request.form.get('category') == "all":
-            channel1.scheduleMaker(intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))
+        # if request.form.get('category') != "all":
+            channel1.scheduleMaker(filterByCategory= request.form.getlist('category'),filterByAuthor= request.form.getlist("author"), filterByTag= request.form.getlist("tag"), intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))
+        # elif request.form.getlist("author") != ["all"]:
+        #     channel1.scheduleMaker(filterByAuthor= request.form.getlist("author"), intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))           
+        # elif request.form.getlist("tag") != []:
+        #     channel1.scheduleMaker(filterByTag= request.form.getlist("tag"), intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))
+        # elif request.form.get('category') == "all":
+        #     channel1.scheduleMaker(intermission= int(request.form.get("intermission")),bufferSize= int(request.form.get("buffer")),totalDays=int(request.form.get('days')))
     return redirect("/")
 
 @app.route("/schedule", methods = ['POST'])

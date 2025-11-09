@@ -198,9 +198,8 @@
                         updateDetails(data);
                     }
                     if (data['active'] == false){
-                        player.cueVideoById(data['video']['id']);
+                        timeout = setTimeout(playVideo1,data['startTime']+1);                        
                         console.log(data['startTime']);
-                        timeout = setTimeout(playVideo1,data['startTime']);
                         updateDetails(data);
                     }                    
                     fetchSchedule();
@@ -218,7 +217,9 @@
 
         function playVideo1(){
             console.log("HIT")
+            player.cueVideoById(data['video']['id']);
             player.playVideo()
+            fetchSchedule()
         }
 
         function updateDetails(video){
