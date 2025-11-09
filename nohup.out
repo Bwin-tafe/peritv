@@ -891,3 +891,518 @@ TypeError: The view function for 'getCurrentVideo' did not return a valid respon
 192.168.0.188 - - [17/Sep/2025 13:57:31] "POST /currentVid HTTP/1.1" 200 -
 192.168.0.188 - - [17/Sep/2025 13:57:31] "POST /schedule HTTP/1.1" 200 -
 192.168.0.188 - - [17/Sep/2025 13:57:31] "GET /null HTTP/1.1" 404 -
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7374
+ * Running on http://192.168.0.110:7374
+[33mPress CTRL+C to quit[0m
+192.168.0.188 - - [17/Sep/2025 19:34:53] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:34:53] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:34:53] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:34:53] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:34:59] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:35:00] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:35:00] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:35:00] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:35:01] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:35:01] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:35:01] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:35:01] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:35:04] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:35:20] "GET /library HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:35:20] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:35:20] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:35:20] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:35:20] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:36:08] "GET /settings HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:36:09] "GET /yownload HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:36:10] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:36:10] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:36:10] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:36:11] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:36:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:36:20] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:36:20] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:36:20] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:36:20] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:36:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:38:58] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:38:58] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:38:58] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:38:58] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:39:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:49:08] "GET /yownload HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:49:22] "POST /yownload HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:49:23] "GET /library HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:49:23] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:49:23] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:49:23] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:49:23] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:51:26] "POST /yownload HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:51:26] "GET /library HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:51:27] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:51:27] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:51:27] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:51:27] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:53:23] "GET /yownload HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:53:36] "POST /yownload HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:57:38] "POST /yownload HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:57:39] "GET /library HTTP/1.1" 200 -
+192.168.0.188 - - [17/Sep/2025 19:57:39] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:57:40] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [17/Sep/2025 19:57:40] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.188 - - [18/Sep/2025 10:57:04] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 10:57:05] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 10:57:05] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [18/Sep/2025 10:57:05] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 10:57:07] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.188 - - [18/Sep/2025 10:57:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.188 - - [18/Sep/2025 12:50:31] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 12:50:31] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 12:50:31] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [18/Sep/2025 13:10:45] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:12:03] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:12:04] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:12:04] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [18/Sep/2025 13:12:04] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:12:06] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.188 - - [18/Sep/2025 13:25:56] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:25:56] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:25:56] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [18/Sep/2025 13:25:56] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:26:05] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:26:05] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:26:05] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.188 - - [18/Sep/2025 13:26:06] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [18/Sep/2025 13:33:34] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 13:36:16] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 13:36:16] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 13:36:16] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 13:36:16] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 13:36:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 14:29:28] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 14:29:28] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 14:29:28] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 14:29:28] "POST /error HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 16:27:56] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 16:27:57] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 16:27:57] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 16:27:57] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 16:28:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 16:28:11] "GET /library HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 16:28:11] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 16:28:11] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 16:28:11] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 16:28:12] "[33mGET /None HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 16:34:38] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 16:34:38] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 16:34:38] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 16:34:38] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 19:59:47] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 19:59:47] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 19:59:47] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 19:59:47] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 19:59:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 20:12:55] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 20:12:55] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 20:12:55] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 20:12:55] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 20:13:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 20:31:23] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 20:31:23] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 20:31:23] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 21:13:29] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 21:13:29] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 21:13:29] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [18/Sep/2025 21:13:30] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [18/Sep/2025 21:13:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [19/Sep/2025 20:01:59] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [19/Sep/2025 20:01:59] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [19/Sep/2025 20:01:59] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [19/Sep/2025 20:02:00] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [19/Sep/2025 20:02:01] "POST /error HTTP/1.1" 200 -
+192.168.0.186 - - [19/Sep/2025 20:02:02] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 07:31:17] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 07:31:17] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 07:31:17] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 07:31:17] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 07:31:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 07:31:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 11:55:05] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 11:55:05] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 11:55:05] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 11:55:05] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 11:55:08] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 12:30:55] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 12:30:55] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 12:30:55] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 12:30:55] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 12:30:57] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 12:34:32] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 12:34:32] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 12:34:32] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 20:54:22] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 20:54:22] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 20:54:22] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 20:54:22] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [22/Sep/2025 20:54:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [22/Sep/2025 20:54:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [24/Sep/2025 07:19:43] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [24/Sep/2025 07:19:44] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [24/Sep/2025 07:19:44] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [24/Sep/2025 07:19:44] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [24/Sep/2025 07:19:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [24/Sep/2025 07:19:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [25/Sep/2025 17:30:49] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [25/Sep/2025 17:30:49] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [25/Sep/2025 17:30:49] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [25/Sep/2025 17:30:50] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [25/Sep/2025 17:30:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [25/Sep/2025 17:30:55] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [25/Sep/2025 19:11:03] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [25/Sep/2025 19:11:03] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [25/Sep/2025 19:11:03] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [25/Sep/2025 19:11:04] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [25/Sep/2025 19:11:05] "POST /error HTTP/1.1" 200 -
+192.168.0.81 - - [25/Sep/2025 21:54:59] "GET / HTTP/1.1" 200 -
+192.168.0.81 - - [25/Sep/2025 21:54:59] "POST /schedule HTTP/1.1" 200 -
+192.168.0.81 - - [25/Sep/2025 21:54:59] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.81 - - [25/Sep/2025 21:55:00] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.81 - - [25/Sep/2025 21:55:01] "POST /error HTTP/1.1" 200 -
+192.168.0.81 - - [25/Sep/2025 21:55:02] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.81 - - [25/Sep/2025 22:33:16] "GET / HTTP/1.1" 200 -
+192.168.0.81 - - [25/Sep/2025 22:33:16] "POST /schedule HTTP/1.1" 200 -
+192.168.0.81 - - [25/Sep/2025 22:33:16] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.81 - - [25/Sep/2025 22:33:16] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 10:11:37] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 10:11:38] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 10:11:38] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [26/Sep/2025 10:11:38] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 10:11:39] "POST /error HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 10:11:40] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.0.186 - - [26/Sep/2025 12:56:42] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 12:56:42] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 12:56:42] "[33mGET /null HTTP/1.1[0m" 404 -
+192.168.0.186 - - [26/Sep/2025 12:56:43] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 12:56:44] "POST /error HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 12:56:47] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 12:56:47] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 12:56:48] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [26/Sep/2025 12:56:48] "[33mGET /null HTTP/1.1[0m" 404 -
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://192.168.0.110:7374/ (Press CTRL+C to quit)
+192.168.0.188 - - [28/Sep/2025 12:15:00] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [28/Sep/2025 12:15:00] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [28/Sep/2025 12:15:00] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [28/Sep/2025 12:15:01] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [28/Sep/2025 12:15:02] "POST /error HTTP/1.1" 200 -
+192.168.0.188 - - [28/Sep/2025 12:15:02] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [30/Sep/2025 19:39:11] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [30/Sep/2025 19:39:12] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [30/Sep/2025 19:39:12] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [30/Sep/2025 19:39:12] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [30/Sep/2025 19:39:14] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [30/Sep/2025 19:39:16] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [30/Sep/2025 20:02:02] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [30/Sep/2025 20:02:02] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [30/Sep/2025 20:02:02] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 07:29:40] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 07:29:40] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 07:29:40] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 07:29:41] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 07:29:42] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 07:29:45] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 07:45:07] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 07:45:07] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 07:45:07] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 07:45:07] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 07:45:10] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:29:51] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:29:51] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:29:51] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:29:52] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:29:55] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:35:19] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:35:19] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:35:19] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:35:19] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:35:21] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:35:22] "GET /library HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:35:22] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:35:23] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:35:23] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:35:23] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:35:24] "GET /settings HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:35:31] "POST /newSchedule HTTP/1.1" 302 -
+192.168.0.188 - - [01/Oct/2025 19:35:31] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:35:31] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:35:31] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 19:35:31] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 19:35:32] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 21:02:07] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 21:02:07] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 21:02:07] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [01/Oct/2025 21:02:08] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [01/Oct/2025 21:02:14] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [02/Oct/2025 07:38:30] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 07:38:31] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 07:38:31] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [02/Oct/2025 07:38:32] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 07:38:34] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [02/Oct/2025 07:38:36] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [02/Oct/2025 18:40:50] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 18:40:50] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 18:40:50] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [02/Oct/2025 18:40:50] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 18:40:51] "POST /error HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 20:09:17] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 20:09:17] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 20:09:17] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [02/Oct/2025 20:09:17] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [02/Oct/2025 20:09:22] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [03/Oct/2025 07:10:55] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 07:10:55] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 07:10:56] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [03/Oct/2025 07:10:57] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 07:11:00] "POST /error HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 07:11:00] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [03/Oct/2025 12:52:05] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 12:52:06] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 12:52:06] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [03/Oct/2025 12:52:06] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 12:52:10] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [03/Oct/2025 14:16:01] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 14:16:01] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 14:16:01] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [03/Oct/2025 14:39:14] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 14:39:14] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 14:39:14] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [03/Oct/2025 14:39:14] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [03/Oct/2025 14:39:27] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 09:04:33] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 09:04:33] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 09:04:33] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 09:04:33] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 09:04:34] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 09:04:38] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 09:33:33] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 09:33:33] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 09:33:33] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 10:22:14] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 10:22:14] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 10:22:14] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 12:01:20] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 12:01:20] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 12:01:20] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 12:01:21] "POST /error HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 12:27:34] "GET /library HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 12:27:34] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 12:27:34] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 12:27:34] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 12:27:34] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 12:27:34] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 12:27:35] "GET /settings HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 12:28:25] "POST /newSchedule HTTP/1.1" 302 -
+192.168.0.188 - - [04/Oct/2025 12:28:25] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 12:28:25] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 12:28:25] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 12:28:26] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 12:28:27] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 13:52:00] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 13:52:00] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 13:52:00] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 14:59:48] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 14:59:48] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 14:59:48] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [04/Oct/2025 14:59:48] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.188 - - [04/Oct/2025 14:59:55] "GET /favicon.ico HTTP/1.1" 404 -
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://192.168.0.110:7374/ (Press CTRL+C to quit)
+192.168.0.186 - - [06/Oct/2025 19:51:16] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [06/Oct/2025 19:51:16] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [06/Oct/2025 19:51:17] "GET /null HTTP/1.1" 404 -
+192.168.0.186 - - [06/Oct/2025 19:51:18] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [06/Oct/2025 19:51:19] "POST /error HTTP/1.1" 200 -
+192.168.0.186 - - [06/Oct/2025 19:51:19] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.186 - - [08/Oct/2025 11:01:07] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [08/Oct/2025 11:01:08] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [08/Oct/2025 11:01:08] "GET /null HTTP/1.1" 404 -
+192.168.0.186 - - [08/Oct/2025 11:01:08] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [08/Oct/2025 11:01:10] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.186 - - [08/Oct/2025 11:01:13] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [09/Oct/2025 14:38:34] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:38:35] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:38:35] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [09/Oct/2025 14:38:35] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:38:37] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [09/Oct/2025 14:38:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:38:43] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:38:43] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [09/Oct/2025 14:38:43] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:38:48] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:38:48] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:38:48] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [09/Oct/2025 14:38:48] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:38:49] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [09/Oct/2025 14:50:06] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:50:06] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [09/Oct/2025 14:50:06] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [18/Oct/2025 21:06:14] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [18/Oct/2025 21:06:15] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [18/Oct/2025 21:06:15] "GET /null HTTP/1.1" 404 -
+[2025-10-18 21:06:15,999] ERROR in app: Exception on /currentVid [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1516, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1535, in finalize_request
+    response = self.make_response(rv)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1698, in make_response
+    raise TypeError(
+TypeError: The view function for 'getCurrentVideo' did not return a valid response. The function either returned None or ended without a return statement.
+127.0.0.1 - - [18/Oct/2025 21:06:16] "POST /currentVid HTTP/1.1" 500 -
+127.0.0.1 - - [18/Oct/2025 21:06:17] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [18/Oct/2025 21:06:25] "GET /settings HTTP/1.1" 200 -
+127.0.0.1 - - [18/Oct/2025 21:06:54] "POST /newSchedule HTTP/1.1" 302 -
+127.0.0.1 - - [18/Oct/2025 21:06:54] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [18/Oct/2025 21:06:54] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [18/Oct/2025 21:06:54] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [18/Oct/2025 21:06:54] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [18/Oct/2025 22:17:26] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [18/Oct/2025 22:17:26] "POST /currentVid HTTP/1.1" 200 -
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://192.168.0.110:7374/ (Press CTRL+C to quit)
+127.0.0.1 - - [22/Oct/2025 20:12:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 20:12:40] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 20:12:41] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 20:12:41] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 20:12:45] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 20:12:53] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 20:12:53] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 20:12:53] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 20:15:41] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 20:15:41] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 20:15:41] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 20:16:17] "GET /library HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 20:16:17] "GET /None HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 20:16:17] "GET /None HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 20:16:17] "GET /None HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 20:16:17] "GET /None HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 20:16:17] "GET /None HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 20:16:19] "GET /None HTTP/1.1" 404 -
+127.0.0.1 - - [22/Oct/2025 21:18:00] "GET /None HTTP/1.1" 404 -
+127.0.0.1 - - [24/Oct/2025 07:29:24] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [24/Oct/2025 07:29:24] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [24/Oct/2025 07:29:25] "GET /null HTTP/1.1" 404 -
+192.168.0.186 - - [24/Oct/2025 14:35:25] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [24/Oct/2025 14:35:25] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [24/Oct/2025 14:35:25] "GET /null HTTP/1.1" 404 -
+192.168.0.186 - - [24/Oct/2025 14:35:26] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [24/Oct/2025 14:35:27] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.186 - - [24/Oct/2025 14:35:28] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.186 - - [26/Oct/2025 12:22:01] "GET / HTTP/1.1" 200 -
+192.168.0.186 - - [26/Oct/2025 12:22:01] "POST /schedule HTTP/1.1" 200 -
+192.168.0.186 - - [26/Oct/2025 12:22:01] "GET /null HTTP/1.1" 404 -
+192.168.0.186 - - [26/Oct/2025 12:22:02] "POST /currentVid HTTP/1.1" 200 -
+192.168.0.186 - - [26/Oct/2025 12:22:03] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.186 - - [26/Oct/2025 12:22:05] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [31/Oct/2025 14:10:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 14:10:49] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 14:10:49] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [31/Oct/2025 14:10:50] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 14:10:52] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [31/Oct/2025 14:11:01] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 14:11:01] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 14:11:02] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [31/Oct/2025 14:11:02] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 14:11:11] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 14:11:11] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 14:11:11] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 14:11:11] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [31/Oct/2025 15:14:02] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 15:14:02] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 15:14:03] "GET /null HTTP/1.1" 404 -
+127.0.0.1 - - [31/Oct/2025 15:14:03] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 18:29:54] "POST /schedule HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 18:29:54] "POST /currentVid HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2025 18:29:54] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [31/Oct/2025 18:29:54] "GET /null HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:19:40] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:19:41] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:19:41] "GET /null HTTP/1.1" 404 -
+[2025-11-09 17:19:41,580] ERROR in app: Exception on /currentVid [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1516, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1535, in finalize_request
+    response = self.make_response(rv)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1698, in make_response
+    raise TypeError(
+TypeError: The view function for 'getCurrentVideo' did not return a valid response. The function either returned None or ended without a return statement.
+192.168.0.188 - - [09/Nov/2025 17:19:42] "POST /currentVid HTTP/1.1" 500 -
+192.168.0.188 - - [09/Nov/2025 17:19:43] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:19:44] "GET /yownload HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:21:50] "POST /yownload HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:21:52] "GET /library HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:21:52] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:21:53] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:21:53] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:21:53] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:24:50] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:24:50] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:24:50] "GET /null HTTP/1.1" 404 -
+[2025-11-09 17:24:50,968] ERROR in app: Exception on /currentVid [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1516, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1535, in finalize_request
+    response = self.make_response(rv)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1698, in make_response
+    raise TypeError(
+TypeError: The view function for 'getCurrentVideo' did not return a valid response. The function either returned None or ended without a return statement.
+192.168.0.188 - - [09/Nov/2025 17:24:50] "POST /currentVid HTTP/1.1" 500 -
+192.168.0.188 - - [09/Nov/2025 17:24:51] "GET /settings HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:26:45] "GET /settings HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:26:52] "GET / HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:26:52] "GET /library HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:26:52] "POST /schedule HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:26:52] "GET /null HTTP/1.1" 404 -
+[2025-11-09 17:26:52,518] ERROR in app: Exception on /currentVid [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1516, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1535, in finalize_request
+    response = self.make_response(rv)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1698, in make_response
+    raise TypeError(
+TypeError: The view function for 'getCurrentVideo' did not return a valid response. The function either returned None or ended without a return statement.
+192.168.0.188 - - [09/Nov/2025 17:26:52] "POST /currentVid HTTP/1.1" 500 -
+192.168.0.188 - - [09/Nov/2025 17:26:55] "GET /library HTTP/1.1" 200 -
+192.168.0.188 - - [09/Nov/2025 17:26:55] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:26:55] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:26:55] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:26:55] "GET /None HTTP/1.1" 404 -
+192.168.0.188 - - [09/Nov/2025 17:26:55] "GET /None HTTP/1.1" 404 -

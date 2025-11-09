@@ -25,30 +25,46 @@ class channel:
             self.getUniqueSeries()
     
     def addPlaylistToLibrary(self, id, category,includeSeries : bool):
-        playlist = self.client.playlistItems.list('contentDetails,snippet',playlist_id=id, max_results=50)
-        playlistData = self.client.playlists.list('id,snippet',playlist_id=id,max_results=50)
-        if includeSeries:
-            series = playlistData.items[0].snippet.title
-            for video in playlist.items:   
-                vidId = video.contentDetails.videoId
-                episode = int(video.snippet.position) + 1
-                if self.duplicateCheck(vidId) == False:
+        page_token_data = None
+        page_token_playlist = None
+        no_next_page = False
+        while no_next_page == False:
+            playlist = self.client.playlistItems.list('contentDetails,snippet',playlist_id=id, max_results=50, page_token= page_token_playlist)
+            playlistData = self.client.playlists.list('id,snippet',playlist_id=id,max_results=50,page_token=page_token_data)
+            try:
+                page_token_data = playlistData.nextPageToken
+                print(playlistData.nextPageToken)
+                page_token_playlist = playlist.nextPageToken
+            except:
+                page_token_data = None
+                page_token_playlist = None
+    
+            if page_token_data == None and page_token_playlist == None:
+                no_next_page = True
+
+
+            if includeSeries:
+                series = playlistData.items[0].snippet.title
+                for video in playlist.items:   
+                    vidId = video.contentDetails.videoId
                     episode = int(video.snippet.position) + 1
-                    newvid = vid(vidId,self.client,category,series=series,episode=episode)
-                    if newvid.author != "invalid":
-                        self.library.append(newvid)
-        else:
-            series = "none"
-            playlistName = playlistData.items[0].snippet.title
-            for video in playlist.items:
-                vidId = video.contentDetails.videoId
-                episode = int(video.snippet.position) + 1
-                if self.duplicateCheck(vidId) == False:
-                    newvid = vid(vidId,self.client,category,series=series,episode=episode)
-                    if newvid.author != "invalid":
-                        newvid.tags =["playlist: "+ playlistName]
-                        print(newvid.tags)
-                        self.library.append(newvid)
+                    if self.duplicateCheck(vidId) == False:
+                        episode = int(video.snippet.position) + 1
+                        newvid = vid(vidId,self.client,category,series=series,episode=episode)
+                        if newvid.author != "invalid":
+                            self.library.append(newvid)
+            else:
+                series = "none"
+                playlistName = playlistData.items[0].snippet.title
+                for video in playlist.items:
+                    vidId = video.contentDetails.videoId
+                    episode = int(video.snippet.position) + 1
+                    if self.duplicateCheck(vidId) == False:
+                        newvid = vid(vidId,self.client,category,series=series,episode=episode)
+                        if newvid.author != "invalid":
+                            newvid.tags =["playlist: "+ playlistName]
+                            # print(newvid.tags)
+                            self.library.append(newvid)
         self.getUniqueSeries()
         self.saveLibrary()
 
