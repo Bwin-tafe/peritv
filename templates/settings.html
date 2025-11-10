@@ -3,7 +3,7 @@
 {% block title %}Settings{% endblock %}
 {% block body %}            
 <form id="form" action="/newSchedule" method="post">
-    <div class="mb-3" >
+    <div class="mb-3" style="padding: 10px;">
     <label for="days" class="form-label">Days to create schedule to</label>
     <input type="number" class="form-control" name="days">
     <label for="category" class="form-label">Only include category:</label>
@@ -20,23 +20,42 @@
         
     </select>
     <label for="author" class="form-label">Only include Author:</label>
-    <select class="form-select" aria-label="Default select example" name="author" multiple>
-        <option selected value="all">All</option>    
-        {%for x in authors%}
-        <option value="{{x}}">{{x}}</option>
-        {%endfor%}
-    </select>
+    <div class="boxGrid">
+        <div>
+            Include:
+            <select class="form-select" aria-label="Default select example" id="authBox1" name="author" ondblclick="moveR('authBox1','authBox2')" multiple>
+                {%for x in authors%}
+                <option value="{{x}}">{{x}}</option>
+                {%endfor%}
+            </select>
+        </div>
+        <div>
+            Exclude:
+            <select class="form-select" aria-label="Default select example" id="authBox2" name="exclude" ondblclick="moveL('authBox1','authBox2')" multiple>
+            </select>
+        </div>
+    </div>
     <label for="tag" class="form-label">Only include tag(s):</label>
-    <select class="form-select" aria-label="Default select example" name="tag" multiple>
-        {%for i in tags%}
-            <option value="{{i}}">{{i}}</option>
-        {%endfor%}
-    </select>
+    <div class="boxGrid">
+        <div>
+            Include:
+            <select class="form-select" aria-label="Default select example" name="tag" id="tagBox1" ondblclick="moveR('tagBox1','tagBox2')" multiple>
+                {%for i in tags%}
+                    <option value="{{i}}">{{i}}</option>
+                {%endfor%}
+            </select>
+        </div>
+        <div>
+            Exclude:
+            <select class="form-select" aria-label="Default select example" id="tagBox2" ondblclick="moveL('tagBox1','tagBox2')"  multiple>
+            </select>
+        </div>
+    </div>
     <label for="buffer"> Random Buffer size</label>
     <input type="number" class="form-control" name="buffer">
     <label for="intermission"> Seconds between videos</label>
     <input type="number" class="form-control" name="intermission">
-    <button type="submit" class="btn btn-primary">New Schedule</button>
+    <button type="submit" onclick="selectAllOptions()" btn="btn-primary">New Schedule</button>
     </div>
 </form>
 
@@ -51,4 +70,49 @@
 
 {% endblock %}
 {% block scripts %}
+<style>
+    .boxGrid {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        padding: 10px;
+    }
+    .boxGrid div {
+        padding: 10px;
+    }
+</style>
+<script>
+    function moveR(boxID1,boxID2) {
+    box1 = document.getElementById(boxID1)
+    box2 = document.getElementById(boxID2)
+
+
+
+    test = box1.options[box1.selectedIndex]
+
+    box2.appendChild(test)
+    }
+
+    function moveL(boxID1,boxID2) {
+    box1 = document.getElementById(boxID1)
+    box2 = document.getElementById(boxID2)
+
+
+
+    test = box2.options[box2.selectedIndex]
+
+    box1.appendChild(test)
+    }
+    
+    function selectAllOptions() {
+        selectElement = document.getElementById('authBox1');
+        for (let i = 0; i < selectElement.options.length; i++) {
+            selectElement.options[i].selected = true;
+        }
+
+        selectElement = document.getElementById('tagBox1');
+        for (let i = 0; i < selectElement.options.length; i++) {
+            selectElement.options[i].selected = true;
+        }
+    }
+</script>
 {% endblock %}
